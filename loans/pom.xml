@@ -97,15 +97,16 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.5.2</version>
                 <configuration>
-                    <image>
-                        <name>arjunkhade/${project.artifactId}:s4</name>
-                    </image>
+                    <to>
+                        <image>arjunkhade/${project.artifactId}:latest</image>
+                    </to>
                 </configuration>
-			</plugin>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
