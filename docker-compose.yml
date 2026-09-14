@@ -1,0 +1,37 @@
+services:
+  accounts:
+    image: "arjunkhade/accounts:s4"
+    container_name: "accounts_ms"
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - easybank
+  loans:
+    image: "arjunkhade/loans:s4"
+    container_name: "loans_ms"
+    ports:
+      - "8090:8090"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - easybank
+  cards:
+    image: "arjunkhade/cards:s4"
+    container_name: "cards_ms"
+    ports:
+      - "9000:9000"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - easybank
+networks:
+  easybank:
+    driver: "bridge"
