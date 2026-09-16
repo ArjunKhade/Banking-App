@@ -1,13 +1,9 @@
-spring:
-  config:
-    activate:
-      on-profile: "qa"
 
 build:
   version: "2.0.0"
 
-cards:
-  message: "Welcome to EazyBank cards related QA APIs "
+loans:
+  message: "Welcome to EazyBank loans related QA APIs "
   contactDetails:
     name: "Tina - Developer"
     email: "tina@eazybank.com"
