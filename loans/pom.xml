@@ -120,7 +120,7 @@
                 <version>3.5.2</version>
                 <configuration>
                     <to>
-                        <image>arjunkhade/${project.artifactId}:s6</image>
+                        <image>arjunkhade/${project.artifactId}:s7</image>
                     </to>
                 </configuration>
             </plugin>
