@@ -20,11 +20,6 @@ spring:
           force-pull: true
         monitor:
           validation-filter-enabled: false
-  rabbitmq:
-    host: "localhost"
-    port: 5672
-    username: "guest"
-    password: "guest"
 
 management:
   endpoints:
