@@ -165,7 +165,7 @@
                 <version>3.5.2</version>
                 <configuration>
                     <to>
-                        <image>arjunkhade/${project.artifactId}:s8</image>
+                        <image>arjunkhade/${project.artifactId}:s9</image>
                     </to>
                 </configuration>
             </plugin>
