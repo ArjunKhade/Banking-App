@@ -6,6 +6,8 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 
+import java.time.LocalDateTime;
+
 @SpringBootApplication
 public class GatewayserverApplication {
 
@@ -25,7 +27,9 @@ public class GatewayserverApplication {
                                         "/eazybank/accounts/(?<segment>.*)",
                                         "/${segment}"
                                 )
+                                .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
                         )
+
                         .uri("lb://ACCOUNTS")
                 )
                 .route(p -> p
@@ -35,6 +39,7 @@ public class GatewayserverApplication {
                                         "/eazybank/cards/(?<segment>.*)",
                                         "/${segment}"
                                 )
+                                .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
                         )
                         .uri("lb://CARDS")
                 )
@@ -45,6 +50,7 @@ public class GatewayserverApplication {
                                         "/eazybank/loans/(?<segment>.*)",
                                         "/${segment}"
                                 )
+                                .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
                         )
                         .uri("lb://LOANS")
                 )
