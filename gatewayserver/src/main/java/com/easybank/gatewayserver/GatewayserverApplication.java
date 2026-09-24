@@ -40,6 +40,7 @@ public class GatewayserverApplication {
                                         "/${segment}"
                                 )
                                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+                                .circuitBreaker(config -> config.setName("accounsCircuitBreaker"))
                         )
                         .uri("lb://CARDS")
                 )
