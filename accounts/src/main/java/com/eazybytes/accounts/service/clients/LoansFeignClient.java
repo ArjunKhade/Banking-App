@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("loans") // service name in eureka server registry
+@FeignClient(name = "loans", fallback = LoansFallback.class)
+// service name in eureka server registry
 public interface LoansFeignClient {
 
     @GetMapping(value = "/api/fetch", consumes = "application/json" )
