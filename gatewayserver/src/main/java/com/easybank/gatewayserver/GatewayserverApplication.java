@@ -28,6 +28,10 @@ public class GatewayserverApplication {
                                         "/${segment}"
                                 )
                                 .addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+                                .circuitBreaker(config -> config.setName("accounsCircuitBreaker")
+                                        .setFallbackUri("forward:/contactSupport")
+                                )
+
                         )
 
                         .uri("lb://ACCOUNTS")
