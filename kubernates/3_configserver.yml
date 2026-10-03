@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: configserver
-        image: eazybytes/configserver:s12
+        image: arjunkhade/configserver:s17
         ports:
         - containerPort: 8071
 ---
@@ -27,7 +27,7 @@ metadata:
 spec:
   selector:
     app: configserver
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - protocol: TCP
       port: 8071

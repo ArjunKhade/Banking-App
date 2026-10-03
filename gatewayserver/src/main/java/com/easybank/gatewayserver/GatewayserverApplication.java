@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.circuitbreaker.resilience4j.ReactiveResilience4JCircuitBreakerFactory;
 import org.springframework.cloud.circuitbreaker.resilience4j.Resilience4JConfigBuilder;
 import org.springframework.cloud.client.circuitbreaker.Customizer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.filter.ratelimit.KeyResolver;
 import org.springframework.cloud.gateway.filter.ratelimit.RedisRateLimiter;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -19,6 +20,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class GatewayserverApplication {
 
 	public static void main(String[] args) {
@@ -44,7 +46,7 @@ public class GatewayserverApplication {
 
                         )
 
-                        .uri("lb://ACCOUNTS")
+                        .uri("http://accounts:8080")
                 )
                 .route(p -> p
                         .path("/eazybank/cards/**")
@@ -57,7 +59,7 @@ public class GatewayserverApplication {
                                 .requestRateLimiter(config -> config.setRateLimiter(redisRateLimiter())
                                         .setKeyResolver(userKeyResolver()))
                         )
-                        .uri("lb://CARDS")
+                        .uri("http://cards:9000")
                 )
                 .route(p -> p
                         .path("/eazybank/loans/**")
@@ -70,7 +72,7 @@ public class GatewayserverApplication {
                                 .retry(retryConfig -> retryConfig.setRetries(3).setMethods(HttpMethod.GET)
                                         .setBackoff(Duration.ofMillis(100), Duration.ofMillis(1000),2, true))
                         )
-                        .uri("lb://LOANS")
+                        .uri("http://loans:8090")
                 )
                 .build();
     }

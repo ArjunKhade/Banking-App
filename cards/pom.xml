@@ -100,7 +100,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-kubernetes-discoveryclient</artifactId>
         </dependency>
 	</dependencies>
 
@@ -165,7 +165,7 @@
                 <version>3.5.2</version>
                 <configuration>
                     <to>
-                        <image>arjunkhade/${project.artifactId}:s14</image>
+                        <image>arjunkhade/${project.artifactId}:s17</image>
                     </to>
                 </configuration>
             </plugin>

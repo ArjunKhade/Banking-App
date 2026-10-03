@@ -1,45 +1,45 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: eurekaserver-deployment
+  name: message-deployment
   labels:
-    app: eurekaserver
+    app: message
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: eurekaserver
+      app: message
   template:
     metadata:
       labels:
-        app: eurekaserver
+        app: message
     spec:
       containers:
-      - name: eurekaserver
-        image: arjunkhade/eurekaserver:s17
+      - name: message
+        image: arjunkhade/message:s17
         ports:
-        - containerPort: 8070
+        - containerPort: 9010
         env:
         - name: SPRING_APPLICATION_NAME
           valueFrom:
             configMapKeyRef:
               name: eazybank-configmap
-              key: EUREKA_APPLICATION_NAME
-        - name: SPRING_CONFIG_IMPORT
-          valueFrom: 
+              key: MESSAGE_APPLICATION_NAME
+        - name: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
+          valueFrom:
             configMapKeyRef:
               name: eazybank-configmap
-              key: SPRING_CONFIG_IMPORT
+              key: SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: eurekaserver
+  name: message
 spec:
   selector:
-    app: eurekaserver
-  type: LoadBalancer
+    app: message
+  type: ClusterIP
   ports:
     - protocol: TCP
-      port: 8070
-      targetPort: 8070
+      port: 9010
+      targetPort: 9010
